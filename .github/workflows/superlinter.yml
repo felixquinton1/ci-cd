@@ -1,14 +1,15 @@
 name: Ci
 on: [push, pull_request]
-jobs:
-    runs-on: ubuntu-18.04 # Required for linkchecker
-    steps:
-    - uses: actions/checkout@v2 # Récupère le contenu du dépôt correspondant au commit du workflow en cours
-    - run: sudo apt-get update && sudo apt-get install -y maven
-    # Génération du dossier livrable `./dist/` avec test inclus
-    - run: mvn clean
-    - run: mvn compile
-    #- run: mvn test # Cible à définir dans le Makefile évidemment
-    #if: contains(github.ref, 'main')
-    #- run: mvn verify
+    jobs:
+        publish:
+            runs-on: ubuntu-18.04 # Required for linkchecker
+            steps:
+            - uses: actions/checkout@v2 # Récupère le contenu du dépôt correspondant au commit du workflow en cours
+            - run: sudo apt-get update && sudo apt-get install -y maven
+            # Génération du dossier livrable `./dist/` avec test inclus
+            - run: mvn clean
+            - run: mvn compile
+            #- run: mvn test # Cible à définir dans le Makefile évidemment
+            #if: contains(github.ref, 'main')
+            #- run: mvn verify
 
