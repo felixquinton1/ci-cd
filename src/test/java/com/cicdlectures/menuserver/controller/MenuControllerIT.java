@@ -100,7 +100,6 @@ public class MenuControllerIT {
 
     ResponseEntity<MenuDto> response = this.template.postForEntity(url.toString(), request, MenuDto.class);
 
-    // LOOOOOOL. This is fine.
-    assertTrue(false);
+    assertEquals(wantMenu, response.getBody());
   }
 }
