@@ -1,6 +1,9 @@
-name: Units and Integration tests creation on branches 
-on: [push, pull_request]
-jobs:
+name:  Units and Integration tests creation and Jar creation on new tags 
+on:
+  push:
+    tags:
+      - 'v*'
+Jobs:
   publish:
     runs-on: ubuntu-18.04 # Required for linkchecker
     steps:
@@ -8,4 +11,4 @@ jobs:
     - run: sudo apt-get update && sudo apt-get install -y maven
     # Génération du dossier livrable `./dist/` avec test inclus
     - run: mvn clean
-    - run: mvn verify
+    - run: mvn package 
