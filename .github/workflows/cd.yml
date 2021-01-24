@@ -62,12 +62,12 @@ jobs:
           draft: false
           prerelease: false
       - name: Upload Release Asset
-            id: upload-release-asset 
-            uses: actions/upload-release-asset@v1
-            env:
-              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            with:
-              upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-              asset_path: /home/runner/work/projet_integration_continue/projet_integration_continue/target/${{ env.PACKAGE_NAME }}-${{ steps.vars.outputs.tag }}.jar
-              asset_name: ${{ env.PACKAGE_NAME }}-${{ steps.vars.outputs.tag }}.jar
-              asset_content_type: application/java-archive
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: /home/runner/work/projet_integration_continue/projet_integration_continue/target/${{ env.PACKAGE_NAME }}-${{ steps.vars.outputs.tag }}.jar
+          asset_name: ${{ env.PACKAGE_NAME }}-${{ steps.vars.outputs.tag }}.jar
+          asset_content_type: application/java-archive
