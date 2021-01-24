@@ -1,5 +1,6 @@
 name: Units and Integration tests creation on branches 
 on: [push, pull_request]
+  branch:
 jobs:
   publish:
     runs-on: ubuntu-18.04 # Required for linkchecker
