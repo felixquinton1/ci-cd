@@ -13,8 +13,8 @@ jobs:
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots compile
 
-jobs:
-  build:
+
+  unit test:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,8 +26,7 @@ jobs:
       - name: Verify unit test with Maven
         run: mvn --batch-mode --update-snapshots test 
 
-jobs:
-  build:
+  integration test:
     runs-on: ubuntu-latest
 
     steps:
