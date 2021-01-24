@@ -1,11 +1,39 @@
 name: Units and Integration tests plus jar creation on branches 
 on: [push, pull_request]
 jobs:
-    publish:
-      runs-on: ubuntu-18.04 # Required for linkchecker
-      steps:
-      - uses: actions/checkout@v2 # Récupère le contenu du dépôt correspondant au commit du workflow en cours
-      - run: sudo apt-get update && sudo apt-get install -y maven
-      # Génération du dossier livrable `./dist/` avec test inclus
-      - run: mvn clean
-      - run: mvn verify
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Build with Maven
+        run: mvn --batch-mode --update-snapshots compile
+
+
+  unit_test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Verify unit test with Maven
+        run: mvn --batch-mode --update-snapshots test 
+
+  integration_test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Build with Maven
+        run: mvn --batch-mode --update-snapshots verify
