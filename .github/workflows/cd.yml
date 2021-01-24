@@ -45,9 +45,8 @@ jobs:
   create_release:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        - name: Set output
+      - uses: actions/checkout@v2
+      - name: Set output
         id: vars
         run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
       - name: Set up JDK 11
