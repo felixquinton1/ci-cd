@@ -6,7 +6,7 @@
 
     <groupId>cicd.project</groupId>
     <artifactId>project-2.0.1-src</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>${artifact_version}</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
